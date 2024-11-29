@@ -1,4 +1,4 @@
-AuthUrls.py no arquivo de urls principal, que fica na pasta lojaAdmin no arquivo urls.py. from django.contrib import admin
+from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
@@ -6,9 +6,7 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('loja.urls.HomeUrls')),
-    # Adicione a linha a seguir
-    path('', include(‘loja.urls.AuthUrls')),
-    # Até aqui
+    path('', include('loja.urls.AuthUrls')),
     path('produto/', include('loja.urls.ProdutoUrls')),
     path('usuario/', include('loja.urls.UsuarioUrls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
