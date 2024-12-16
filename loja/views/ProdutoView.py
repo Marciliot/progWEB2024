@@ -1,14 +1,9 @@
-# Adicione a linha a seguir
 from django.contrib.auth.decorators import login_required
-# Até aqui
 from django.shortcuts import render, redirect
 from loja.models import Produto, Fabricante, Categoria
 from datetime import timedelta, datetime
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
-# Adicione a linha a seguir
-@login_required
-# Até aqui
 def create_produto_view(request, id=None):
   if request.method == 'POST':
     produto = request.POST.get("Produto")
@@ -88,7 +83,7 @@ def details_produto_view(request, id=None):
   print(produto)
   context = {'produto': produto}
   return render(request, template_name='produto/produto-details.html', context=context, status=200)
-
+@login_required
 def edit_produto_view(request, id=None):
   produtos = Produto.objects.all()
   if id is not None:
